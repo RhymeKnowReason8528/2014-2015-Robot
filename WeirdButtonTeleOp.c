@@ -1,9 +1,10 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
-#pragma config(Sensor, S1,     touch,          sensorI2CMuxController)
+#pragma config(Sensor, S1,     touch,          sensorNone)
+#pragma config(Sensor, S2,     touchSensor,    sensorTouch)
 #pragma config(Motor,  mtr_S1_C1_1,     belt,          tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     harvester,     tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C2_1,     rightDrive,    tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C2_2,     leftDrive,     tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_1,     rightDrive,    tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_2,     leftDrive,     tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C3_1,     arm,           tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     motorI,        tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C4_1,    servo1,               tServoNone)
@@ -60,17 +61,17 @@ task main()
 		}
 
 //Conveyor belt controls (btn 7 high speed, btn 9 low speed, btn 1 reverse high speed)
-		if(joy2Btn(7) == 1)
-		{
-			motor[belt] = 100;
-		}
-		if(joy2Btn(5) == 1)
-		{
-			motor[belt] = 85;
-		}
+		//if(joy2Btn(7) == 1)
+		//{
+		//	motor[belt] = 100;
+		//}
+		//if(joy2Btn(5) == 1)
+		//{
+		//	motor[belt] = 85;
+		//}
 		if(joy2Btn(1) == 1)
 		{
-			motor[belt] = 100;
+			motor[belt] = 25;
 		}
 		else
 		{
@@ -78,6 +79,15 @@ task main()
 		}
 
 //arm controls (btn 2 forward, btn 3 reverse)
+		//while(joy2Btn(7) == 1 && SensorValue[touchSensor] == 1)
+		//{
+		//	motor[arm] = 100;
+		//}
+		//while(joy2Btn(5) == 1 && SensorValue[touchSensor] == 0)
+		//{
+		//	motor[arm] = 100;
+		//}
+
 		while(joy2Btn(2) == 1)
 		{
 			motor[arm] = 100;
