@@ -51,7 +51,7 @@ task main()
 		{
 			motor[harvester] = 100;
 		}
-		if(joy2Btn(8) == 1)
+		else if(joy2Btn(8) == 1)
 		{
 			motor[harvester] = 75;
 		}
@@ -61,6 +61,7 @@ task main()
 		}
 
 //Conveyor belt controls (btn 7 high speed, btn 9 low speed, btn 1 reverse high speed)
+<<<<<<< HEAD
 		//if(joy2Btn(7) == 1)
 		//{
 		//	motor[belt] = 100;
@@ -70,6 +71,17 @@ task main()
 		//	motor[belt] = 85;
 		//}
 		if(joy2Btn(1) == 1)
+=======
+		if(joy2Btn(7) == 1)
+		{
+			motor[belt] = -100;
+		}
+		else if(joy2Btn(5) == 1)
+		{
+			motor[belt] = 85;
+		}
+		else if(joy2Btn(1) == 1)
+>>>>>>> origin/master
 		{
 			motor[belt] = 25;
 		}
