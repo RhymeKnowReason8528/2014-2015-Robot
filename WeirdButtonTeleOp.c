@@ -20,6 +20,10 @@ void initializeRobot()
 {
 	return;
 }
+const int CENTER_GOAL_BELT_SPEED = 80;
+const int TALL_GOAL_BELT_SPEED = 25;
+const int MIDDLE_GOAL_BELT_SPEED = 25;
+const int SHORT_GOAL_BELT_SPEED = 25;
 task main()
 {
 	initializeRobot();
@@ -53,7 +57,7 @@ task main()
 		}
 		else if(joy2Btn(8) == 1)
 		{
-			motor[harvester] = 75;
+			motor[harvester] = 60;
 		}
 		else
 		{
@@ -61,7 +65,6 @@ task main()
 		}
 
 //Conveyor belt controls (btn 7 high speed, btn 9 low speed, btn 1 reverse high speed)
-<<<<<<< HEAD
 		//if(joy2Btn(7) == 1)
 		//{
 		//	motor[belt] = 100;
@@ -70,20 +73,22 @@ task main()
 		//{
 		//	motor[belt] = 85;
 		//}
-		if(joy2Btn(1) == 1)
-=======
-		if(joy2Btn(7) == 1)
+
+		if(joy2Btn(2) == 1)
 		{
-			motor[belt] = -100;
+			motor[belt] = TALL_GOAL_BELT_SPEED;
 		}
-		else if(joy2Btn(5) == 1)
+		else if(joy2Btn(3) == 1)
 		{
-			motor[belt] = 85;
+			motor[belt] = MIDDLE_GOAL_BELT_SPEED;
+		}
+		else if(joy2Btn(4) == 1)
+		{
+			motor[belt] = CENTER_GOAL_BELT_SPEED;
 		}
 		else if(joy2Btn(1) == 1)
->>>>>>> origin/master
 		{
-			motor[belt] = 25;
+			motor[belt] = SHORT_GOAL_BELT_SPEED;
 		}
 		else
 		{
@@ -100,15 +105,15 @@ task main()
 		//	motor[arm] = 100;
 		//}
 
-		while(joy2Btn(2) == 1)
+		if(joy2Btn(10) == 1)
 		{
 			motor[arm] = 100;
 		}
-		while(joy2Btn(3) == 1)
+		else if(joy2Btn(9) == 1)
 		{
-			motor[arm] = -100;
+			motor[arm] = -80;
 		}
-		if(joy2Btn(2) == 0 & joy2Btn(3) == 0)
+		else if(joy2Btn(10) == 0 & joy2Btn(9) == 0)
 		{
 			motor[arm] = 0;
 		}
