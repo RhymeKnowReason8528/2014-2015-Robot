@@ -20,18 +20,20 @@ void initializeRobot()
 {
 	return;
 }
+
 const int CENTER_GOAL_BELT_SPEED = 80;
 const int TALL_GOAL_BELT_SPEED = 25;
 const int MIDDLE_GOAL_BELT_SPEED = 25;
 const int SHORT_GOAL_BELT_SPEED = 25;
+
 task main()
 {
 	initializeRobot();
-	//waitForStart(); // wait for start of tele-op phase
+	waitForStart(); // wait for start of tele-op phase
 	while (true)
 	{
 		getJoystickSettings(joystick);
-//drive code (right or left?)
+		//drive code (right or left?)
 		if(joystick.joy1_y1 > -15 && joystick.joy1_y1 < 15)//if joysticks are near center power is 0
 		{
 			motor[leftDrive] = 0;
@@ -40,7 +42,7 @@ task main()
 		{
 			motor[leftDrive] = joystick.joy1_y1*0.5;//otherwise power is half of the joystick value
 		}
-	//same for other drive wheels (right or left?)
+		//same for other drive wheels (right or left?)
 		if(joystick.joy1_y2 > -15 && joystick.joy1_y2 < 15)
 		{
 			motor[rightDrive] = 0;
@@ -50,7 +52,7 @@ task main()
 			motor[rightDrive] = joystick.joy1_y2*0.5;
 		}
 
-//Harvester controls (button 6 is high speed, button 8 is low speed)
+		//Harvester controls (button 6 is high speed, button 8 is low speed)
 		if(joy2Btn(6) == 1)
 		{
 			motor[harvester] = 100;
@@ -64,15 +66,7 @@ task main()
 			motor[harvester] = 0;
 		}
 
-//Conveyor belt controls (btn 7 high speed, btn 9 low speed, btn 1 reverse high speed)
-		//if(joy2Btn(7) == 1)
-		//{
-		//	motor[belt] = 100;
-		//}
-		//if(joy2Btn(5) == 1)
-		//{
-		//	motor[belt] = 85;
-		//}
+		//Conveyor belt controls (btn 7 high speed, btn 9 low speed, btn 1 reverse high speed)
 
 		if(joy2Btn(2) == 1)
 		{
@@ -95,15 +89,7 @@ task main()
 			motor[belt] = 0;
 		}
 
-//arm controls (btn 2 forward, btn 3 reverse)
-		//while(joy2Btn(7) == 1 && SensorValue[touchSensor] == 1)
-		//{
-		//	motor[arm] = 100;
-		//}
-		//while(joy2Btn(5) == 1 && SensorValue[touchSensor] == 0)
-		//{
-		//	motor[arm] = 100;
-		//}
+		//arm controls (btn 10 up, btn 9 down)
 
 		if(joy2Btn(10) == 1)
 		{
