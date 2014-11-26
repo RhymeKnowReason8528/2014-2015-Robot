@@ -14,95 +14,83 @@
 #pragma config(Servo,  srvo_S1_C4_5,    servo5,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_6,    servo6,               tServoNone)            !!*//
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                           Autonomous Mode Code Template
-//
-// This file contains a template for simplified creation of an autonomous program for an TETRIX robot
-// competition.
-//
-// You need to customize two functions with code unique to your specific robot.
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "JoystickDriver.c"  //Include file to "handle" the Bluetooth messages.
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                    initializeRobot
-//
-// Prior to the start of autonomous mode, you may want to perform some initialization on your robot.
-// Things that might be performed during initialization include:
-//   1. Move motors and servos to a preset position.
-//   2. Some sensor types take a short while to reach stable values during which time it is best that
-//      robot is not moving. For example, gyro sensor needs a few seconds to obtain the background
-//      "bias" value.
-//
-// In many cases, you may not have to add any code to this function and it will remain "empty".
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
+#include "library\display.h"
 
 void initializeRobot()
 {
-  // Place code here to sinitialize servos to starting positions.
-  // Sensors are automatically configured and setup by ROBOTC. They may need a brief time to stabilize.
+	// Place code here to sinitialize servos to starting positions.
+	// Sensors are automatically configured and setup by ROBOTC. They may need a brief time to stabilize.
 
-  return;
+	return;
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                         Main Task
-//
-// The following is the main code for the autonomous robot operation. Customize as appropriate for
-// your specific robot.
-//
-// The types of things you might do during the autonomous phase (for the 2008-9 FTC competition)
-// are:
-//
-//   1. Have the robot follow a line on the game field until it reaches one of the puck storage
-//      areas.
-//   2. Load pucks into the robot from the storage bin.
-//   3. Stop the robot and wait for autonomous phase to end.
-//
-// This simple template does nothing except play a periodic tone every few seconds.
-//
-// At the end of the autonomous period, the FMS will autonmatically abort (stop) execution of the program.
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
+const int OFF_RAMP = 0;
+const int START_AT_PARK_ZONE = 1;
 
 task main()
 {
-  initializeRobot();
+	initializeRobot();
 
-  waitForStart(); // Wait for the beginning of autonomous phase.
+	waitForStart(); // Wait for the beginning of autonomous phase.
+	int routineCounter = 0;
 
-  nMotorEncoder[rightDrive] = 0;
-  nMotorEncoder[leftDrive] = 0;
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
+	while(nNxtButtonPressed != ORANGE_BUTTON){
+		switch(nNxtButtonPressed){
+		case LEFT_BUTTON:
+			while(nNxtButtonPressed == LEFT_BUTTON){}	//empty while to delay until button is released
+			routineCounter ++;
+			break;
+		case RIGHT_BUTTON:
+			while(nNxtButtonPressed == LEFT_BUTTON){}	//empty while to delay until button is released
+			routineCounter --;
+			break;
+		}//end switch
+		switch (routineCounter){
+		case OFF_RAMP:
+			displayBigStringAt(LEFT_X, TOP_Y, "OFF_RAMP");
+			break;
+		case START_AT_PARK_ZONE:
+			displayBigStringAt(LEFT_X, TOP_Y, "PARKING_ZONE");
+			break;
+		}
+	}//end while (should end when Orange button is pressed)
 
-	while(nMotorEncoder[rightDrive] > -5800)
-	{
-		motor[rightDrive] = -50;
-		motor[leftDrive] = -50;
-	}
-	motor[rightDrive] = 0;
-	motor[leftDrive] = 0;
+	switch(routineCounter){
+	case OFF_RAMP:
+		while(nMotorEncoder[rightDrive] > -6100)
+		{
+			motor[rightDrive] = -50;
+			motor[leftDrive] = -50;
+		}
+		motor[rightDrive] = 0;
+		motor[leftDrive] = 0;
 
-	while(SensorValue[touch] = 1)
-	{
-		motor[arm] = 100;
-	}
-	motor[arm] = 0;
-	while(SensorValue[touch] = 0)
-	{
-		motor[arm] = 100;
-	}
-	motor[arm] = 0;
+	break;
+case START_AT_PARK_ZONE:
+		/*sense for IR
+		depending on where it is
+			go straight forward to hit kickstand
+			go forward a little bit then turn and go forward to hit kickstand
+			go forward a little, straight, turn, forward to hit kickstand
+		stop*/
+	break;
+}
 
-  while (true)
-  {
 
-  }
+//while(SensorValue[touch] = 1)
+//{
+//	motor[arm] = 100;
+//}
+//motor[arm] = 0;
+//while(SensorValue[touch] = 0)
+//{
+//	motor[arm] = 100;
+//}
+//motor[arm] = 0;
+
+while (true){}
 }
