@@ -67,10 +67,24 @@ task main()
   initializeRobot();
 
   waitForStart(); // Wait for the beginning of autonomous phase.
+  task main()
+{
 
-  motor[arm] = -100;
-  wait1Msec(2000);
-  motor[arm] = 0;
+while(SensorValue(touchSensor) == 1)
+{
+	motor[arm) = 100;
+}
+while(sensorValue(touchSensor) == 0)
+{
+	motor[arm] = 100;
+}
+motor[arm] = 0;
+
+}
+
+  //motor[arm] = -100;
+  //wait1Msec(2000);
+  //motor[arm] = 0;
  // while(SensorValue[touch] == 0)
  // {
 	//  if(SensorValue[touch] == 0)
