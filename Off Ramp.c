@@ -85,9 +85,10 @@ case START_AT_PARK_ZONE:
 		{
 			//go forward a little bit then turn and go forward to hit kickstand
 		}
-		if(SensorValue(IRSeek) > /*farthest left sensor value*/
+		if(SensorValue(IRSeek) > /*farthest left sensor value, means the center is at third position*/
 
-		/*sense for IR
+		/*PSEUDOCODE for START_AT_PARK_ZONE
+		sense for IR
 		depending on where it is
 			go straight forward to hit kickstand
 			go forward a little bit then turn and go forward to hit kickstand
