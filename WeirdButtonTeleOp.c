@@ -34,7 +34,7 @@ task main()
 	{
 		getJoystickSettings(joystick);
 		//drive code (right or left?)
-		if(joystick.joy1_y1 > -15 && joystick.joy1_y1 < 15)//if joysticks are near center power is 0
+		if(abs(joystick.joy1_y1) > 15)//if joysticks are near center power is 0
 		{
 			motor[leftDrive] = 0;
 		}
