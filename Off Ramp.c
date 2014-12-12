@@ -1,7 +1,8 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
 #pragma config(Sensor, S1,     touch,          sensorNone)
-#pragma config(Sensor, S2,     touchSensor,    sensorTouch)
-#pragma config(Sensor, S3,     IRSeek,         sensorHiTechnicIRSeeker600)
+#pragma config(Sensor, S2,     armInternal,    sensorTouch)
+#pragma config(Sensor, S3,     IRSeek,         sensorHiTechnicIRSeeker1200)
+#pragma config(Sensor, S4,     armExternal,    sensorTouch)
 #pragma config(Motor,  mtr_S1_C1_1,     belt,          tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     harvester,     tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C2_1,     rightDrive,    tmotorTetrix, openLoop)
@@ -21,6 +22,7 @@
 
 #include "JoystickDriver.c"  //Include file to "handle" the Bluetooth messages.
 #include "library\display.h"
+#include "library\armControls.c"
 
 void initializeRobot()
 {
@@ -66,7 +68,7 @@ task main()
 
 	switch(routineCounter){
 	case OFF_RAMP:
-		while(nMotorEncoder[rightDrive] > -6100)
+		while(nMotorEncoder[rightDrive] > -6300)
 		{
 			motor[rightDrive] = -50;
 			motor[leftDrive] = -50;
