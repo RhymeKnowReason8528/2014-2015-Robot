@@ -33,64 +33,14 @@ task main()
 
 	waitForStart(); // Wait for the beginning of autonomous phase.
 
-	while(SensorValue(touchSensor) == 1)
+	while(SensorValue(touchSensor) == 1)//sensor starts out pressed, arm raises
 	{
 		motor[arm] = 100;
 	}
-	while(sensorValue(touchSensor) == 0)
+	while(sensorValue(touchSensor) == 0)//as arm raises sensor is no longer pressed but it keeps rais
 	{
 		motor[arm] = 100;
 	}
 	motor[arm] = 0;
 
-}
-
-//motor[arm] = -100;
-//wait1Msec(2000);
-//motor[arm] = 0;
-// while(SensorValue[touch] == 0)
-// {
-//  if(SensorValue[touch] == 0)
-//  {
-//  	motor[arm] = 100;
-//  }
-//  else
-//  {
-//  	motor[arm] = 0;
-//  }
-//}
-//motor[arm] = 0;
-//while(SensorValue[touch] == 0)
-// {
-//  if(SensorValue[touch] == 0)
-//  {
-//  	motor[arm] = -100;
-//  }
-//  else
-//  {
-//  	motor[arm] = 0;
-//  }
-//}
-////motor[arm] = 0;
-////wait1Msec(500);
-//if(SensorValue[touch] == 0)
-//{
-//	motor[arm] = 100;
-//}
-//motor[arm] = 0;
-
-// while(SensorValue[touch] == 1)//while sensor is pressed the arm goes up
-//{
-//	motor[arm] = 100;
-//}
-//motor[arm] = 0;//stop the arm (for troubleshooting)
-//wait1Msec(500);
-//while(SensorValue[touch] == 0)//while the sensor is not pressed the arm goes the rest of the way up
-//{
-//	motor[arm] = 100;
-//}
-//motor[arm] = 0;//motor stops at the top
-
-while (true)
-{}
 }
