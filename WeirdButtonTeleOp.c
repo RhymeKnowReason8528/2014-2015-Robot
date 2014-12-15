@@ -1,12 +1,16 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
 #pragma config(Sensor, S1,     touch,          sensorNone)
-#pragma config(Sensor, S2,     touchSensor,    sensorTouch)
+#pragma config(Sensor, S2,     armInternal,    sensorTouch)
+#pragma config(Sensor, S4,     armExternal,    sensorTouch)
 #pragma config(Motor,  mtr_S1_C1_1,     belt,          tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     harvester,     tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C2_1,     rightDrive,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_2,     leftDrive,     tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C3_1,     arm,           tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     motorI,        tmotorTetrix, openLoop)
+#pragma config(MotorPidSetting,  motorA,  255, 255, 65535, 255, 255,   65535, 65535, 65535)
+#pragma config(MotorPidSetting,  motorB,  255, 255, 65535, 255, 255,   65535, 65535, 65535)
+#pragma config(MotorPidSetting,  motorC,  255, 255, 65535, 255, 255,   65535, 65535, 65535)
 #pragma config(Servo,  srvo_S1_C4_1,    servo1,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_3,    servo3,               tServoNone)
@@ -25,7 +29,7 @@ void initializeRobot()
 
 const int CENTER_GOAL_BELT_SPEED = 80;
 const int TALL_GOAL_BELT_SPEED = 25;
-const int MIDDLE_GOAL_BELT_SPEED = 25;
+const int MIDDLE_GOAL_BELT_SPEED = 20;
 const int SHORT_GOAL_BELT_SPEED = 25;
 
 task main()
@@ -42,7 +46,7 @@ task main()
 		}
 		else
 		{
-			motor[leftDrive] = joystick.joy1_y1*0.5;//otherwise power is half of the joystick value
+			motor[leftDrive] = joystick.joy1_y1*0.25;//otherwise power is half of the joystick value
 		}
 		//same for other drive wheels (right or left?)
 		if(joystick.joy1_y2 > -15 && joystick.joy1_y2 < 15)
@@ -61,7 +65,7 @@ task main()
 		}
 		else if(joy2Btn(8) == 1)
 		{
-			motor[harvester] = 60;
+			motor[harvester] = 40;
 		}
 		else
 		{
@@ -95,15 +99,15 @@ task main()
 
 		if(joy2Btn(10) == 1)
 		{
-			if(getArmPosition() != ARM_EXTENDED){
+			//if(getArmPosition() != ARM_EXTENDED){
 				motor[arm] = 100;
-			}
+			//}
 		}
 		else if(joy2Btn(9) == 1)
 		{
-			if(getArmPosition() != ARM_FOLDED){
+			//if(getArmPosition() != ARM_FOLDED){
 				motor[arm] = -80;
-			}
+			//}
 		}
 		else
 		{
