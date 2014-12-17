@@ -1,5 +1,4 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
-#pragma config(Sensor, S1,     touch,          sensorNone)
 #pragma config(Sensor, S2,     armInternal,    sensorTouch)
 #pragma config(Sensor, S4,     armExternal,    sensorTouch)
 #pragma config(Motor,  mtr_S1_C1_1,     belt,          tmotorTetrix, openLoop)
