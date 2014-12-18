@@ -5,10 +5,10 @@ const int ARM_MIDDLE = 0;
 const int ARM_EXTENDED = 1;
 
 int getArmPosition(){
-	if(SensorValue(armExternal) < 500){
+	if(SensorValue(armExternal) > 500){
 		return ARM_FOLDED;
 	}
-	else if(SensorValue(armInternal) > 500){
+	else if(SensorValue(armInternal) < 500){
 		return ARM_EXTENDED;
 	}
 	else{
