@@ -6,9 +6,10 @@ const int ARM_EXTENDED = 1;
 
 int getArmPosition(){
 	if(SensorValue(armExternal) < 500){
+		clearTimer(T3);
 		return ARM_FOLDED;
 	}
-	else if(SensorValue(armInternal) < 500){
+	else if(SensorValue(armInternal) < 500 && time1[T3] > 1000){
 		return ARM_EXTENDED;
 	}
 	else{
