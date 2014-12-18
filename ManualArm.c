@@ -26,7 +26,7 @@ task main()
 	displayStringAt(RIGHT_X, BOTTOM_Y, "Down");
 
 	while(true){
-		switch(nNxtButtonPressed){
+		switch((int)nNxtButtonPressed){
 		case LEFT_BUTTON:
 				if(getArmPosition() == ARM_EXTENDED){
 					motor[arm] = 0;
