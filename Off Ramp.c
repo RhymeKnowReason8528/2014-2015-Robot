@@ -78,6 +78,12 @@ task main()
 		motor[rightDrive] = 0;
 		motor[leftDrive] = 0;
 
+		while(getArmPosition() != ARM_EXTENDED)
+		{
+			motor[arm] = 100;
+		}
+		motor[arm] = 0;
+
 		break;
 		//we may want to mount the sensor at a 30 deggree angle
 	case START_AT_PARK_ZONE:
@@ -100,6 +106,7 @@ task main()
 		stop*/
 		break;
 	}
+
 
 	while (true){}//this just keeps the program running until the end of Autonomous
 }
