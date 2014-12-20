@@ -35,24 +35,21 @@ void initializeRobot()
 const int OFF_RAMP = 0;
 const int START_AT_PARK_ZONE = 1;
 
+
 task main()
 {
 	initializeRobot();
 
-	waitForStart(); // Wait for the beginning of autonomous phase.
 	int routineCounter = 0;
 
-	nMotorEncoder[rightDrive] = 0;
-	nMotorEncoder[leftDrive] = 0;
-
 	while(nNxtButtonPressed != ORANGE_BUTTON){
-		switch(nNxtButtonPressed){
+		switch((int)nNxtButtonPressed){
 		case LEFT_BUTTON:
 			while(nNxtButtonPressed == LEFT_BUTTON){}	//empty while to delay until button is released
 			routineCounter ++;
 			break;
 		case RIGHT_BUTTON:
-			while(nNxtButtonPressed == LEFT_BUTTON){}	//empty while to delay until button is released
+			while(nNxtButtonPressed == RIGHT_BUTTON){}	//empty while to delay until button is released
 			routineCounter --;
 			break;
 		}//end switch
@@ -66,9 +63,14 @@ task main()
 		}
 	}//end while (should end when Orange button is pressed)
 
+	waitForStart(); // Wait for the beginning of autonomous phase.
+
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
+
 	switch(routineCounter){
 	case OFF_RAMP:
-		while(nMotorEncoder[rightDrive] > -6300)
+		while(nMotorEncoder[rightDrive] > -8500)
 		{
 			motor[rightDrive] = -50;
 			motor[leftDrive] = -50;
@@ -76,28 +78,28 @@ task main()
 		motor[rightDrive] = 0;
 		motor[leftDrive] = 0;
 
-	break;
-	//we may want to mount the sensor at a 30 deggree angle
-case START_AT_PARK_ZONE:
-		if(SensorValue(IRSeek) == /*straight ahead (4?)*/)
+		break;
+		//we may want to mount the sensor at a 30 deggree angle
+	case START_AT_PARK_ZONE:
+		//if(SensorValue(IRSeek) == /*straight ahead (4?)*/)
 		{
 			//go straight forward to hit kickstand
 		}
-		if(SensorValue(IRSeek) > /*straight ahead (4?) meaning the center module is tilted*/ && SensotValue(IRSeek) < /*farthest to the left meaning center is at second position*/)
+		//if(SensorValue(IRSeek) > /*straight ahead (4?) meaning the center module is tilted*/ && SensotValue(IRSeek) < /*farthest to the left meaning center is at second position*/)
 		{
 			//go forward a little bit then turn and go forward to hit kickstand
 		}
-		if(SensorValue(IRSeek) > /*farthest left sensor value, means the center is at third position*/
+		//if(SensorValue(IRSeek) > /*farthest left sensor value, means the center is at third position*/
 
 		/*PSEUDOCODE for START_AT_PARK_ZONE
 		sense for IR
 		depending on where it is
-			go straight forward to hit kickstand
-			go forward a little bit then turn and go forward to hit kickstand
-			go forward a little, straight, turn, forward to hit kickstand
+		go straight forward to hit kickstand
+		go forward a little bit then turn and go forward to hit kickstand
+		go forward a little, straight, turn, forward to hit kickstand
 		stop*/
-	break;
-}
+		break;
+	}
 
-while (true){}//this just keeps the program running until the end of Autonomous
+	while (true){}//this just keeps the program running until the end of Autonomous
 }
