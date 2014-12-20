@@ -97,17 +97,13 @@ task main()
 
 		//arm controls (btn 10 up, btn 9 down)
 
-		if(joy2Btn(10) == 1)
+		if(joy2Btn(10) == 1 && getArmPosition() != ARM_EXTENDED)//when the arm isn't up it can go up
 		{
-			//if(getArmPosition() != ARM_EXTENDED){
-				motor[arm] = 100;
-			//}
+			motor[arm] = 100;
 		}
-		else if(joy2Btn(9) == 1)
+		else if(joy2Btn(9) == 1 && getArmPosition() != ARM_FOLDED)//when arm isn't down it can go down
 		{
-			//if(getArmPosition() != ARM_FOLDED){
-				motor[arm] = -80;
-			//}
+			motor[arm] = -80;
 		}
 		else
 		{
