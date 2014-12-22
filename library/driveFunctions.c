@@ -217,9 +217,3 @@ void slowLeftSwingTurn (int duration)
 	motor[rightDrive] = 0;
 	motor[leftDrive] = 0;
 }
-
-task main()
-{
-
-
-}
