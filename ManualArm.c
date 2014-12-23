@@ -22,28 +22,28 @@
 #include "library\armControls.c"
 task main()
 {
-	displayStringAt(LEFT_X, BOTTOM_Y, "Up");
+	displayStringAt(LEFT_X, BOTTOM_Y, "Up");//displays the user promps
 	displayStringAt(RIGHT_X, BOTTOM_Y, "Down");
 
 	while(true){
 		switch((int)nNxtButtonPressed){
-		case LEFT_BUTTON:
-				if(getArmPosition() == ARM_EXTENDED){
-					motor[arm] = 0;
+		case LEFT_BUTTON://if the left button is pressed to raise arm
+				if(getArmPosition() == ARM_EXTENDED){//it checks if the arm is already all the way up
+					motor[arm] = 0;//stops arm if it is up to prevent it from burning out motor
 				}
 				else{
-					motor[arm] = 100;
+					motor[arm] = 100;//if the arm in not in up position it allows the arm to move (in this case up)
 				}
 			break;
-		case RIGHT_BUTTON:
-			if(getArmPosition() == ARM_FOLDED){
-					motor[arm] = 0;
+		case RIGHT_BUTTON://if the right button is pressed to lower the arm
+			if(getArmPosition() == ARM_FOLDED){//checks if the arm is already all the way down
+					motor[arm] = 0;//stops the arm if it is down to prevent it from burning out motor
 				}
 				else{
-					motor[arm] = -90;
+					motor[arm] = -90;//if the arm is not down it allows the arm go down
 				}
 			break;
-		case NO_BUTTON:
+		case NO_BUTTON://when nothing is pressed it stops
 				motor[arm] = 0;
 			break;
 		}//end switch
