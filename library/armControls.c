@@ -1,11 +1,11 @@
 #pragma systemfile
-
+//constants returned when it finds arm position
 const int ARM_FOLDED = -1;
 const int ARM_MIDDLE = 0;
 const int ARM_EXTENDED = 1;
 
-int getArmPosition(){
-	if(SensorValue(armExternal) < 500){
+int getArmPosition(){//finds position of arm
+	if(SensorValue(armExternal) < 500){	//checks if arm is pressing external touch sensor
 		clearTimer(T3);
 		return ARM_FOLDED;
 	}
