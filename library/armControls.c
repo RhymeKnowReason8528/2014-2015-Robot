@@ -18,8 +18,9 @@ int getArmPosition(){//finds position of arm
 }
 
 void extendArm(){//ONLY USE IN AUTONOMOUS
-	motor[arm] = 100;//starts raising
-	while(SensorValue(armInternal) < 500)//waits in loop until arm is extended
-	{}
-	motor[arm] = 0;
+		while(getArmPosition() != ARM_EXTENDED)
+		{
+			motor[arm] = 100;
+		}
+		motor[arm] = 0;
 }
