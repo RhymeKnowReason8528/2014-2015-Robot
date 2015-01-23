@@ -1,5 +1,5 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
-#pragma config(Sensor, S1,     touch,          sensorNone)
+#pragma config(Sensor, S1,     touch,          sensorI2CMuxController)
 #pragma config(Sensor, S2,     armInternal,    sensorTouch)
 #pragma config(Sensor, S4,     armExternal,    sensorTouch)
 #pragma config(Motor,  mtr_S1_C1_1,     belt,          tmotorTetrix, openLoop)
@@ -8,10 +8,7 @@
 #pragma config(Motor,  mtr_S1_C2_2,     leftDrive,     tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C3_1,     arm,           tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     motorI,        tmotorTetrix, openLoop)
-#pragma config(MotorPidSetting,  motorA,  255, 255, 65535, 255, 255,   65535, 65535, 65535)
-#pragma config(MotorPidSetting,  motorB,  255, 255, 65535, 255, 255,   65535, 65535, 65535)
-#pragma config(MotorPidSetting,  motorC,  255, 255, 65535, 255, 255,   65535, 65535, 65535)
-#pragma config(Servo,  srvo_S1_C4_1,    servo1,               tServoNone)
+#pragma config(Servo,  srvo_S1_C4_1,    goalGrabber,          tServoStandard)
 #pragma config(Servo,  srvo_S1_C4_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_4,    servo4,               tServoNone)
@@ -24,6 +21,7 @@
 
 void initializeRobot()
 {
+	servo[goalGrabber] = 150;
 	return;
 }
 
@@ -56,6 +54,17 @@ task main()
 		else
 		{
 			motor[rightDrive] = joystick.joy1_y2*0.5;
+		}
+
+		//goal grabber controls
+		if(joy1Btn(5) == 1){//servo is almost all the way down to help with positioning
+			servo[goalGrabber] = 32;
+		}
+		else if(joy1Btn(7) == 1){//servo is down to grab goal
+			servo[goalGrabber] = 0;
+		}
+		else if(joy1Btn(6) == 1){//servo is straight up to get it out of the way
+			servo[goalGrabber] = 128;
 		}
 
 		//Harvester controls (button 6 is high speed, button 8 is low speed)
