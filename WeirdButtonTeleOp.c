@@ -4,8 +4,8 @@
 #pragma config(Sensor, S4,     armExternal,    sensorTouch)
 #pragma config(Motor,  mtr_S1_C1_1,     belt,          tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     harvester,     tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C2_1,     rightDrive,    tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C2_2,     leftDrive,     tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_1,     rightDrive,    tmotorTetrix, PIDControl, reversed)
+#pragma config(Motor,  mtr_S1_C2_2,     leftDrive,     tmotorTetrix, PIDControl)
 #pragma config(Motor,  mtr_S1_C3_1,     arm,           tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     motorI,        tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C4_1,    goalGrabber,          tServoStandard)
@@ -46,7 +46,7 @@ task main()
 		}
 		else
 		{
-			motor[leftDrive] = joystick.joy1_y1*0.25;//otherwise power is half of the joystick value
+			motor[leftDrive] = joystick.joy1_y1*07;//otherwise power is half of the joystick value
 		}
 		//same for other drive wheels (right or left?)
 		if(joystick.joy1_y2 > -15 && joystick.joy1_y2 < 15)
@@ -55,7 +55,7 @@ task main()
 		}
 		else
 		{
-			motor[rightDrive] = joystick.joy1_y2*0.5;
+			motor[rightDrive] = joystick.joy1_y2*0.7;
 		}
 
 		//goal grabber controls
