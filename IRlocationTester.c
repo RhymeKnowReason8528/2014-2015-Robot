@@ -20,6 +20,8 @@
 #include "library\IRramp.c"
 task main()
 {
+	chooseWait();
+	wait1Msec(chooseWait());
 	IRrampScan1();
 	//fastLeftPointTurn(1700);
 	//fastLeftPointTurn(2100);
