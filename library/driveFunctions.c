@@ -1,4 +1,7 @@
+#ifndef drivefunctions
+#define drivefunctions
 
+#pragma SystemFile
 
 
 ///////////////////////////////////
@@ -8,6 +11,8 @@
 ///////////////////////////////////
 void forwardFast (int duration)
 {
+	nMotorEncoder[leftDrive] = 0;
+	nMotorEncoder[rightDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = 100;
@@ -18,6 +23,8 @@ void forwardFast (int duration)
 }
 void forwardMedium (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = 75;
@@ -28,6 +35,8 @@ void forwardMedium (int duration)
 }
 void forwardSlow (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = 50;
@@ -47,7 +56,9 @@ void forwardSlow (int duration)
 ///////////////////////////////////
 void backwardFast (int duration)
 {
-	while(nMotorEncoder[leftDrive] < duration)
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
+	while(nMotorEncoder[leftDrive] > -1* duration)
 	{
 		motor[leftDrive] = -100;
 		motor[rightDrive] = -100;
@@ -57,7 +68,9 @@ void backwardFast (int duration)
 }
 void backwardMedium (int duration)
 {
-	while(nMotorEncoder[leftDrive] < duration)
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
+	while(nMotorEncoder[leftDrive] > -1* duration)
 	{
 		motor[leftDrive] = -75;
 		motor[rightDrive] = -75;
@@ -67,7 +80,9 @@ void backwardMedium (int duration)
 }
 void backwardSlow (int duration)
 {
-	while(nMotorEncoder[leftDrive] < duration)
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
+	while(nMotorEncoder[leftDrive] > -1* duration)
 	{
 		motor[leftDrive] = -50;
 		motor[rightDrive] = -50;
@@ -84,6 +99,8 @@ void backwardSlow (int duration)
 ///////////////////////////////////
 void fastRightPointTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = -100;
@@ -94,6 +111,8 @@ void fastRightPointTurn (int duration)
 }
 void mediumRightPointTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = -75;
@@ -104,6 +123,8 @@ void mediumRightPointTurn (int duration)
 }
 void slowRightPointTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = -50;
@@ -121,6 +142,8 @@ void slowRightPointTurn (int duration)
 ///////////////////////////////////
 void fastLeftPointTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = 100;
@@ -131,6 +154,8 @@ void fastLeftPointTurn (int duration)
 }
 void mediumLeftPointTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = 75;
@@ -141,6 +166,8 @@ void mediumLeftPointTurn (int duration)
 }
 void slowLeftPointTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = 50;
@@ -158,6 +185,8 @@ void slowLeftPointTurn (int duration)
 ///////////////////////////////////
 void fastRightSwingTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[rightDrive] = 100;
@@ -167,6 +196,8 @@ void fastRightSwingTurn (int duration)
 }
 void mediumRightSwingTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[rightDrive] = 75;
@@ -176,6 +207,8 @@ void mediumRightSwingTurn (int duration)
 }
 void slowRightSwingTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[rightDrive] = 50;
@@ -192,6 +225,8 @@ void slowRightSwingTurn (int duration)
 ///////////////////////////////////
 void fastLeftSwingTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = 100;
@@ -201,6 +236,8 @@ void fastLeftSwingTurn (int duration)
 }
 void mediumLeftSwingTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = 75;
@@ -210,6 +247,8 @@ void mediumLeftSwingTurn (int duration)
 }
 void slowLeftSwingTurn (int duration)
 {
+	nMotorEncoder[rightDrive] = 0;
+	nMotorEncoder[leftDrive] = 0;
 	while(nMotorEncoder[leftDrive] < duration)
 	{
 		motor[leftDrive] = 50;
@@ -217,3 +256,5 @@ void slowLeftSwingTurn (int duration)
 	motor[rightDrive] = 0;
 	motor[leftDrive] = 0;
 }
+
+#endif
