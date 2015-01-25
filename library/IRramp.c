@@ -26,13 +26,14 @@ int IRrampScan1 ()
 int chooseWait ()
 {
 	int howLong = 0;
+	int howLongSec = howLong/1000;
 	while(nNxtButtonPressed != ORANGE_BUTTON)
 	{
 		wait1Msec(100);
 		eraseDisplay();
 		displayStringAt(LEFT_X, BOTTOM_Y, "Less");
 		displayStringAt(RIGHT_X - 10, BOTTOM_Y, "More");
-		displayCenteredTextLine(2, "Wait %d", howLong);
+		displayCenteredTextLine(2, "Wait %d", howLongSec);
 		switch((int)nNxtButtonPressed){
 		case LEFT_BUTTON://if the left button is pressed to raise arm
 		while(nNxtButtonPressed == LEFT_BUTTON)
