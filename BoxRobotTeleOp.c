@@ -74,7 +74,7 @@ task main()
 			servo[flipperServo] = 255;
 		}
 		else if(joy1Btn(3) == 1){
-			servo[flipperServo] = 0;
+			servo[flipperServo] = 32;
 		}
 		else if(joy1Btn(2) == 1){
 			servo[flipperServo] = 128;
@@ -89,10 +89,10 @@ task main()
 		{
 			motor[harvester] = 40;
 		}
-		else
-		{
-			motor[harvester] = 0;
-		}
+		//else if(
+		//{
+			//motor[harvester] = 0;
+		//}
 
 		//Conveyor belt controls (btn 7 high speed, btn 9 low speed, btn 1 reverse high speed)
 
