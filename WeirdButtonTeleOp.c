@@ -40,22 +40,22 @@ task main()
 	{
 		getJoystickSettings(joystick);
 		//drive code (right or left?)
-		if(joystick.joy1_y1 > -15 && joystick.joy1_y1 < 15)//if joysticks are near center power is 0
+		if(joystick.joy1_y2 > -15 && joystick.joy1_y2 < 15)//if joysticks are near center power is 0
 		{
 			motor[leftDrive] = 0;
 		}
 		else
 		{
-			motor[leftDrive] = joystick.joy1_y1*07;//otherwise power is half of the joystick value
+			motor[leftDrive] = joystick.joy1_y2*07;//otherwise power is half of the joystick value
 		}
 		//same for other drive wheels (right or left?)
-		if(joystick.joy1_y2 > -15 && joystick.joy1_y2 < 15)
+		if(joystick.joy1_y1 > -15 && joystick.joy1_y1 < 15)
 		{
 			motor[rightDrive] = 0;
 		}
 		else
 		{
-			motor[rightDrive] = joystick.joy1_y2*0.7;
+			motor[rightDrive] = joystick.joy1_y1*0.7;
 		}
 
 		//goal grabber controls
