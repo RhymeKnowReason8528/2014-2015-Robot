@@ -23,7 +23,8 @@
 
 void initializeRobot()
 {
-	servo[goalGrabber] = 150;
+	servo[goalGrabber] = 0;
+	servo[flipperServo] = 0;
 	return;
 }
 
@@ -71,13 +72,14 @@ task main()
 
 		//flipper servo controls
 		if(joy1Btn(1) == 1){
-			servo[flipperServo] = 255;
+			servo[flipperServo] = 240;//flips the box over to score in the center goal.
 		}
+		//needs to be calibrated with the final box.
 		else if(joy1Btn(3) == 1){
-			servo[flipperServo] = 32;
+			servo[flipperServo] = 0;//moves the box in position to score in the highest rolling goal.
 		}
 		else if(joy1Btn(2) == 1){
-			servo[flipperServo] = 128;
+			servo[flipperServo] = 80;//moves the box so it is on the flat of the gear, so it can be folded into the arm.
 		}
 
 		//Harvester controls (button 6 is high speed, button 8 is low speed)
@@ -96,26 +98,26 @@ task main()
 
 		//Conveyor belt controls (btn 7 high speed, btn 9 low speed, btn 1 reverse high speed)
 
-		if(joy2Btn(2) == 1)
-		{
-			motor[belt] = TALL_GOAL_BELT_SPEED;
-		}
-		else if(joy2Btn(3) == 1)
-		{
-			motor[belt] = MIDDLE_GOAL_BELT_SPEED;
-		}
-		else if(joy2Btn(4) == 1)
-		{
-			motor[belt] = CENTER_GOAL_BELT_SPEED;
-		}
-		else if(joy2Btn(1) == 1)
-		{
-			motor[belt] = SHORT_GOAL_BELT_SPEED;
-		}
-		else
-		{
-			motor[belt] = 0;
-		}
+		//if(joy2Btn(2) == 1)
+		//{
+		//	motor[belt] = TALL_GOAL_BELT_SPEED;
+		//}
+		//else if(joy2Btn(3) == 1)
+		//{
+		//	motor[belt] = MIDDLE_GOAL_BELT_SPEED;
+		//}
+		//else if(joy2Btn(4) == 1)
+		//{
+		//	motor[belt] = CENTER_GOAL_BELT_SPEED;
+		//}
+		//else if(joy2Btn(1) == 1)
+		//{
+		//	motor[belt] = SHORT_GOAL_BELT_SPEED;
+		//}
+		//else
+		//{
+		//	motor[belt] = 0;
+		//}
 
 		//arm controls (btn 10 up, btn 9 down)
 
