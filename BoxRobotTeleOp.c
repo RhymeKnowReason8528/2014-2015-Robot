@@ -23,15 +23,10 @@
 
 void initializeRobot()
 {
-	servo[goalGrabber] = 0;
+	servo[goalGrabber] = 150;
 	servo[flipperServo] = 0;
 	return;
 }
-
-const int CENTER_GOAL_BELT_SPEED = 80;
-const int TALL_GOAL_BELT_SPEED = 25;
-const int MIDDLE_GOAL_BELT_SPEED = 20;
-const int SHORT_GOAL_BELT_SPEED = 25;
 
 task main()
 {
@@ -59,14 +54,14 @@ task main()
 			motor[rightDrive] = joystick.joy1_y1*0.7;
 		}
 
-		//goal grabber controls
+		//lid controls
 		if(joy1Btn(5) == 1){//servo is almost all the way down to help with positioning (prev. 32)
 			servo[goalGrabber] = 223;
 		}
-		else if(joy1Btn(7) == 1){//servo is down to grab goal (prev. 0)
+		else if(joy1Btn(7) == 1){//
 			servo[goalGrabber] = 255;
 		}
-		else if(joy1Btn(6) == 1){//servo is straight up to get it out of the way (prev. 128, 115)
+		else if(joy1Btn(6) == 1){//lid is shut
 			servo[goalGrabber] = 150;
 		}
 
@@ -91,10 +86,10 @@ task main()
 		{
 			motor[harvester] = 40;
 		}
-		//else if(
-		//{
-			//motor[harvester] = 0;
-		//}
+		else
+		{
+			motor[harvester] = 0;
+		}
 
 		//Conveyor belt controls (btn 7 high speed, btn 9 low speed, btn 1 reverse high speed)
 
