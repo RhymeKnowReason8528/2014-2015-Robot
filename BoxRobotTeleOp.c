@@ -2,13 +2,14 @@
 #pragma config(Sensor, S1,     touch,          sensorI2CMuxController)
 #pragma config(Sensor, S2,     armInternal,    sensorTouch)
 #pragma config(Sensor, S4,     armExternal,    sensorTouch)
+#pragma config(Motor,  motorA,          goalGrabber,   tmotorNXT, PIDControl, encoder)
 #pragma config(Motor,  mtr_S1_C1_1,     belt,          tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     harvester,     tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C2_1,     rightDrive,    tmotorTetrix, PIDControl, reversed)
 #pragma config(Motor,  mtr_S1_C2_2,     leftDrive,     tmotorTetrix, PIDControl)
 #pragma config(Motor,  mtr_S1_C3_1,     arm,           tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     motorI,        tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S1_C4_1,    goalGrabber,          tServoStandard)
+#pragma config(Servo,  srvo_S1_C4_1,    lidServo,             tServoStandard)
 #pragma config(Servo,  srvo_S1_C4_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_4,    flipperServo,         tServoStandard)
@@ -23,7 +24,7 @@
 
 void initializeRobot()
 {
-	servo[goalGrabber] = 150;
+	servo[lidServo] = 150;
 	servo[flipperServo] = 0;
 	return;
 }
@@ -56,13 +57,13 @@ task main()
 
 		//lid controls
 		if(joy1Btn(5) == 1){//servo is almost all the way down to help with positioning (prev. 32)
-			servo[goalGrabber] = 223;
+			servo[lidServo] = 223;
 		}
 		else if(joy1Btn(7) == 1){//
-			servo[goalGrabber] = 255;
+			servo[lidServo] = 255;
 		}
 		else if(joy1Btn(6) == 1){//lid is shut
-			servo[goalGrabber] = 150;
+			servo[lidServo] = 150;
 		}
 
 		//flipper servo controls
@@ -90,29 +91,6 @@ task main()
 		{
 			motor[harvester] = 0;
 		}
-
-		//Conveyor belt controls (btn 7 high speed, btn 9 low speed, btn 1 reverse high speed)
-
-		//if(joy2Btn(2) == 1)
-		//{
-		//	motor[belt] = TALL_GOAL_BELT_SPEED;
-		//}
-		//else if(joy2Btn(3) == 1)
-		//{
-		//	motor[belt] = MIDDLE_GOAL_BELT_SPEED;
-		//}
-		//else if(joy2Btn(4) == 1)
-		//{
-		//	motor[belt] = CENTER_GOAL_BELT_SPEED;
-		//}
-		//else if(joy2Btn(1) == 1)
-		//{
-		//	motor[belt] = SHORT_GOAL_BELT_SPEED;
-		//}
-		//else
-		//{
-		//	motor[belt] = 0;
-		//}
 
 		//arm controls (btn 10 up, btn 9 down)
 
