@@ -75,7 +75,7 @@ task main()
 			servo[flipperServo] = 0;//moves the box in position to score in the highest rolling goal.
 		}
 		else if(joy1Btn(2) == 1){
-			servo[flipperServo] = 80;//moves the box so it is on the flat of the gear, so it can be folded into the arm.
+			servo[flipperServo] = 80;//box sits on flat of gear, so it can be folded into the arm.
 		}
 
 		//Harvester controls (button 6 is high speed, button 8 is low speed)
