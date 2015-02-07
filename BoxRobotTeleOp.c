@@ -76,6 +76,7 @@ task main()
 		}
 		else if(joy2Btn(2) == 1){
 			servo[flipperServo] = 80;//moves the box in position to score in the highest rolling goal.
+
 		}
 
 		//Harvester controls (button 6 is high speed, button 8 is low speed)
