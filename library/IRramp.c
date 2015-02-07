@@ -3,6 +3,7 @@
 #include "C:\Users\Emma\Documents\GitHub\robotcdriversuite\include\hitechnic-irseeker-v2.h"
 #include "driveFunctions.c"
 #include "library\display.h"
+#include "armControls.c"
 
 int IRrampScan1 ()
 {
@@ -20,7 +21,7 @@ int IRrampScan1 ()
 	eraseDisplay();
 	displayTextLine(2, "First Reading %d", read1);
 	displayTextLine(5, "Second reading %d", read2);
-	return 0;
+	return read1 + read2;
 }
 
 int chooseWait ()

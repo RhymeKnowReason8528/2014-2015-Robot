@@ -2,7 +2,8 @@
 #pragma config(Sensor, S1,     touch,          sensorI2CMuxController)
 #pragma config(Sensor, S2,     armInternal,    sensorTouch)
 #pragma config(Sensor, S4,     armExternal,    sensorTouch)
-#pragma config(Motor,  motorA,          goalGrabber,   tmotorNXT, PIDControl, encoder)
+#pragma config(Motor,  motorA,          goalGrabber1,  tmotorNXT, PIDControl, encoder)
+#pragma config(Motor,  motorB,          goalGrabber2,  tmotorNXT, PIDControl, encoder)
 #pragma config(Motor,  mtr_S1_C1_1,     belt,          tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     harvester,     tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C2_1,     rightDrive,    tmotorTetrix, PIDControl, reversed)
@@ -24,7 +25,7 @@
 
 void initializeRobot()
 {
-	servo[lidServo] = 150;
+	servo[lidServo] = 180;
 	servo[flipperServo] = 0;
 	return;
 }
@@ -43,7 +44,7 @@ task main()
 		}
 		else
 		{
-			motor[leftDrive] = joystick.joy1_y2*07;//otherwise power is half of the joystick value
+			motor[leftDrive] = joystick.joy1_y2*05;//otherwise power is half of the joystick value
 		}
 		//same for other drive wheels (right or left?)
 		if(joystick.joy1_y1 > -15 && joystick.joy1_y1 < 15)
@@ -52,40 +53,39 @@ task main()
 		}
 		else
 		{
-			motor[rightDrive] = joystick.joy1_y1*0.7;
+			motor[rightDrive] = joystick.joy1_y1*0.75;
 		}
 
 		//lid controls
-		if(joy1Btn(5) == 1){//servo is almost all the way down to help with positioning (prev. 32)
+		if(joy2Btn(5) == 1){//servo is almost all the way down to help with positioning (prev. 32)
 			servo[lidServo] = 223;
 		}
-		else if(joy1Btn(7) == 1){//
+		else if(joy2Btn(7) == 1){//
 			servo[lidServo] = 255;
 		}
-		else if(joy1Btn(6) == 1){//lid is shut
-			servo[lidServo] = 150;
+		else if(joy2Btn(6) == 1){//lid is shut
+			servo[lidServo] = 180;
 		}
 
 		//flipper servo controls
-		if(joy1Btn(1) == 1){
-			servo[flipperServo] = 240;//flips the box over to score in the center goal.
+		if(joy2Btn(1) == 1){
+			servo[flipperServo] = 255;//flips the box over to score in the center goal.
 		}
-		//needs to be calibrated with the final box.
-		else if(joy1Btn(3) == 1){
-			servo[flipperServo] = 0;//moves the box in position to score in the highest rolling goal.
+		else if(joy2Btn(3) == 1){
+			servo[flipperServo] = 0;//moves the box so it is on the flat of the gear, so it can be folded into the arm.
 		}
-		else if(joy1Btn(2) == 1){
-			servo[flipperServo] = 80;//moves the box so it is on the flat of the gear, so it can be folded into the arm.
+		else if(joy2Btn(2) == 1){
+			servo[flipperServo] = 80;//moves the box in position to score in the highest rolling goal.
 		}
 
 		//Harvester controls (button 6 is high speed, button 8 is low speed)
-		if(joy2Btn(6) == 1)
-		{
-			motor[harvester] = 100;
-		}
-		else if(joy2Btn(8) == 1)
+		if(joy1Btn(6) == 1 && getArmPosition() == ARM_FOLDED)//harvester only runs when arm is down
 		{
 			motor[harvester] = 40;
+		}
+		else if(joy1Btn(8) == 1)//reverses harvester
+		{
+			motor[harvester] = -40;
 		}
 		else
 		{
@@ -105,6 +105,20 @@ task main()
 		else
 		{
 			motor[arm] = 0;
+		}
+
+		//goal grabber controls
+		if(joy1Btn(7) == 1){
+			motor[goalGrabber1] = 100;
+			motor[goalGrabber2] = 100;
+		}
+		else if(joy1Btn(5) == 1){
+			motor[goalGrabber1] = -50;
+			motor[goalGrabber2] = -50;
+		}
+		else{
+			motor[goalGrabber1] = 0;
+			motor[goalGrabber2] = 0;
 		}
 	}//end while
 }

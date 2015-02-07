@@ -9,7 +9,7 @@ int getArmPosition(){//finds position of arm
 		clearTimer(T3);
 		return ARM_FOLDED;
 	}
-	else if(SensorValue(armInternal) == 1 && time1[T3] > 1000){
+	else if(SensorValue(armInternal) == 1 && time1[T3] > 3000){
 		return ARM_EXTENDED;
 	}
 	else{
