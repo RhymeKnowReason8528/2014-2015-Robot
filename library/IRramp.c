@@ -2,7 +2,7 @@
 
 #include "C:\Users\Emma\Documents\GitHub\robotcdriversuite\include\hitechnic-irseeker-v2.h"
 #include "driveFunctions.c"
-#include "library\display.h"
+#include "display.h"
 #include "armControls.c"
 
 int IRrampScan1 ()
@@ -30,7 +30,7 @@ int chooseWait ()
 	int howLongSec = howLong/1000;
 	while(nNxtButtonPressed != ORANGE_BUTTON)
 	{
-		wait1Msec(100);
+		wait1Msec(10);
 		eraseDisplay();
 		displayStringAt(LEFT_X, BOTTOM_Y, "Less");
 		displayStringAt(RIGHT_X - 10, BOTTOM_Y, "More");
