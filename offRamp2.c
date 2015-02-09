@@ -26,11 +26,16 @@ void initializeRobot()
   return;
 }
 
-#include "library\driveFunctions.c"
+//#include "library\driveFunctions.c"
+#include "library\IRramp.c";
 
 task main()
 {
   initializeRobot();
+
+ // chooseWait();
+
+  //wait1Msec(chooseWait());
 
   waitForStart(); // Wait for the beginning of autonomous phase.
 
