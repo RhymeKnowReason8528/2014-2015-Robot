@@ -39,7 +39,15 @@ task main()
 
   waitForStart(); // Wait for the beginning of autonomous phase.
 
-  forwardFast(8500);
+  forwardFast(7300);
+  extendArm();
+  motor[arm] = -50;
+  wait1Msec(1000);
+  motor[arm] = 0;
+  forwardSlow(1400);
+  wait1Msec(1000);
+  servo[flipperServo] = 100;
+  servo[lidServo] = 223;
 
   while (true)
   {}
