@@ -39,23 +39,23 @@ task main()
 
   waitForStart(); // Wait for the beginning of autonomous phase.
 
-  forwardFast(7300);
-  extendArm();
-  wait1Msec(500);
-  motor[arm] = -50;
+  forwardFast(7300);//goes down ramp
+  extendArm();//raises arm
+  wait1Msec(500);//this wait keeps the arm from damaging itself by moving up and down too quickly
+  motor[arm] = -50;//lowers arm slightly
   wait1Msec(2000);
   motor[arm] = 0;
-  forwardSlow(1000);
+  forwardSlow(1000);//forward to line up with 60cm RG
   wait1Msec(500);
-  servo[flipperServo] = 100;
+  servo[flipperServo] = 100;//box tilts to scoring position
   wait1Msec(500);
-  servo[lidServo] = 200;
+  servo[lidServo] = 200;//lid opens to let small ball out
   wait1Msec(1000);
-  extendArm();
+  extendArm();//raises arm up again
   forwardSlow(3000);
   servo[lidServo] = 223;
   servo[goalServo] = 64;
-  fastrightPointTurn(500);
+  fastRightPointTurn(500);
   backwardFast(10000);
 
   while (true)
