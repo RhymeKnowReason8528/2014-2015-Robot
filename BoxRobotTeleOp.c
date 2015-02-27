@@ -24,8 +24,9 @@
 
 void initializeRobot()
 {
-	servo[lidServo] = 180;//inits box lid to 'closed' position
+	servo[lidServo] = 185;//inits box lid to 'closed' position
 	servo[flipperServo] = 10;
+	servo[goalServo] = 100;
 	return;
 }
 
