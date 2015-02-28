@@ -62,14 +62,14 @@ task main()
   forwardSlow(3000);//forward to line up with 90cm goal
   servo[flipperServo] = 10;
   wait1Msec(3000);
-  servo[lidServo] = 223;
-  servo[goalServo] = 50;
+  servo[lidServo] = 223;//drops large ball
+  servo[goalServo] = 50;//grabs goal
   wait1Msec(750);
   fastRightPointTurn(1000);
   wait1Msec(500);
   backwardFast(2500);
   fastRightPointTurn(3700);
-  forwardFast(5000);
+  forwardFast(5000);//ADD ANOTHER ~1000 TO THIS
 
   while (true)
   {}
