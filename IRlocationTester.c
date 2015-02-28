@@ -22,6 +22,7 @@ task main()
 {
 	chooseWait();
 
+	waitForStart();
 	wait1Msec(chooseWait());
 	IRrampScan1();
 	//extendArm();
