@@ -24,7 +24,7 @@ void initializeRobot()
 	servo[goalServo] = 100;
 	servo[lidServo] = 180;
 	servo[flipperServo] = 10;
-  return;
+	return;
 }
 
 //#include "library\driveFunctions.c"
@@ -32,45 +32,45 @@ void initializeRobot()
 
 task main()
 {
-  initializeRobot();
+	initializeRobot();
 
- // chooseWait();
+	// chooseWait();
 
-  //wait1Msec(chooseWait());
+	//wait1Msec(chooseWait());
 
-  waitForStart(); // Wait for the beginning of autonomous phase.
+	waitForStart(); // Wait for the beginning of autonomous phase.
 
-  forwardFast(7300);//goes down ramp
-  extendArm();//raises arm
-  wait1Msec(500);//this wait keeps the arm from damaging itself by moving up and down too quickly
-  forwardSlow(1000);//forward to line up with 60cm RG
-  wait1Msec(500);
+	forwardFast(7300);//goes down ramp
+	extendArm();//raises arm
+	wait1Msec(500);//this wait keeps the arm from damaging itself by moving up and down too quickly
+	forwardSlow(1000);//forward to line up with 60cm RG
+	wait1Msec(500);
 	nMotorEncoder[arm] = 0;
-  while(-nMotorEncoder[arm] < 3700 && getArmPosition() != ARM_FOLDED){
-  	motor[arm] = -50;
-  }
-  motor[arm]  = 0;
-  servo[flipperServo] = 100;//box tilts to scoring position
-  wait1Msec(500);
-  servo[lidServo] = 200;//lid opens to let small ball out
-  wait1Msec(1000);
-  nMotorEncoder[arm] = 0;
-  while(nMotorEncoder[arm] < 2500 && getArmPosition() != ARM_EXTENDED){
-  	motor[arm] = 100;
-  }
-  motor[arm]  = 0;
-  forwardSlow(3000);//forward to line up with 90cm goal
-  servo[flipperServo] = 10;
-  wait1Msec(3000);
-  servo[lidServo] = 223;//drops large ball
-  servo[goalServo] = 50;//grabs goal
-  wait1Msec(750);
-  fastRightPointTurn(1000);
-  wait1Msec(500);
-  backwardFast(2500);
-  fastRightPointTurn(3700);
-  forwardFast(5000);//ADD ANOTHER ~1000 TO THIS
+	while(-nMotorEncoder[arm] < 3700 && getArmPosition() != ARM_FOLDED){
+		motor[arm] = -50;
+	}
+	motor[arm]  = 0;
+	servo[flipperServo] = 100;//box tilts to scoring position
+	wait1Msec(500);
+	servo[lidServo] = 200;//lid opens to let small ball out
+	wait1Msec(1000);
+	nMotorEncoder[arm] = 0;
+	while(nMotorEncoder[arm] < 2500 && getArmPosition() != ARM_EXTENDED){
+		motor[arm] = 100;
+	}
+	motor[arm]  = 0;
+	forwardSlow(3000);//forward to line up with 90cm goal
+	servo[flipperServo] = 10;
+	wait1Msec(3000);
+	servo[lidServo] = 223;//drops large ball
+	servo[goalServo] = 50;//grabs goal
+	wait1Msec(750);
+	fastRightPointTurn(1000);
+	wait1Msec(500);
+	backwardFast(2500);
+	fastRightPointTurn(3700);
+	forwardFast(5000);//ADD ANOTHER ~1000 TO THIS
 
-  while (true)
-  {}
+	while (true)
+	{}
 }
